@@ -80,24 +80,23 @@ button:active {
 .questions::after {
     content: '';
     position: absolute;
-    top: -90px;
+    top: 0;
+    right: 0;
     background-image: url('/blobs1.png');
     background-repeat: no-repeat;
-    background-position: top right;
-    width: 100%;
-    height: 100%;
+    width: 20%;
+    height: 20%;
 }
 
 .questions::before {
     content: '';
     position: absolute;
-    bottom: -70px;
-    left: -60px;
+    bottom: 0;
+    left: 0;
     background-image: url('/blobs2.png');
     background-repeat: no-repeat;
-    background-position: bottom left;
-    width: 100%;
-    height: 100%;
+    width: 150px;
+    height: 30px;
 }
 
 h3.question {
@@ -126,10 +125,14 @@ ul li {
     line-height: 12px;
     text-align: center;
     color: #293264;
-    padding: 4px 0;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 ul li.selected {
     background: #D6DBF5;
     border: none;
 }
+
