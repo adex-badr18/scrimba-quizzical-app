@@ -6,7 +6,7 @@ export default function Question() {
             </h3>
 
             <ul className="options">
-                <li className="option">Cabbage Patch Kids</li>
+                <li className="option selected">Cabbage Patch Kids</li>
                 <li className="option">Transformers</li>
                 <li className="option">Care Bears</li>
                 <li className="option">Rubik’s Cube</li>

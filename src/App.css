@@ -99,3 +99,37 @@ button:active {
     width: 100%;
     height: 100%;
 }
+
+h3.question {
+    font-family: 'Karla', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    color: #293264;
+    margin-bottom: 14px;
+}
+
+ul.options {
+    list-style: none;
+    display: grid;
+    grid-template: repeat(2, auto) / repeat(2, 1fr);
+    gap: 13px;
+}
+
+ul li {
+    border-radius: 7.94239px;
+    border: 1px solid #4D5B9E;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 10.24px;
+    line-height: 12px;
+    text-align: center;
+    color: #293264;
+    padding: 4px 0;
+}
+
+ul li.selected {
+    background: #D6DBF5;
+    border: none;
+}
