@@ -62,9 +62,13 @@ img.blobs {
     line-height: 19px;
     text-align: center;
     color: #F5F7FB;
+    cursor: pointer;
 }
 
-button:focus,
-button:active {
+button:focus {
     outline: none;
+}
+
+button:active {
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
