@@ -50,4 +50,21 @@ img.blobs {
     margin-bottom: 30px;
 }
 
-.start-btn {}
+.start-btn {
+    width: 193px;
+    height: 52px;
+    background: #4D5B9E;
+    border-radius: 15px;
+    border: none;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    color: #F5F7FB;
+}
+
+button:focus,
+button:active {
+    outline: none;
+}
