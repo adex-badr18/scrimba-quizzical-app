@@ -17,4 +17,19 @@ section {
     align-items: center;
     justify-content: center;
     text-align: center;
+    position: relative;
+}
+
+img.blobs {
+    position: absolute;
+}
+
+.blobs.top {
+    top: 0;
+    right: 0;
+}
+
+.blobs.bottom {
+    left: 0;
+    bottom: 0;
 }
