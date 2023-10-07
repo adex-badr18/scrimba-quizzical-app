@@ -12,6 +12,8 @@ section {
     position: relative;
 }
 
+/* Splash Screen component */
+
 .splash {
     display: flex;
     flex-direction: column;
@@ -71,4 +73,29 @@ button:focus {
 
 button:active {
     box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Question component */
+
+.questions::after {
+    content: '';
+    position: absolute;
+    top: -90px;
+    background-image: url('/blobs1.png');
+    background-repeat: no-repeat;
+    background-position: top right;
+    width: 100%;
+    height: 100%;
+}
+
+.questions::before {
+    content: '';
+    position: absolute;
+    bottom: -70px;
+    left: -60px;
+    background-image: url('/blobs2.png');
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    width: 100%;
+    height: 100%;
 }
