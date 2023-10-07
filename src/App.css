@@ -136,3 +136,18 @@ ul li.selected {
     border: none;
 }
 
+/* MEDIA QUERIES */
+@media (min-width: 468px) {
+    section {
+        padding: 40px 75px 25px;
+    }
+
+    ul.options {
+        grid-template: auto / repeat(4, 1fr);
+    }
+
+    ul li {
+        width: max-content;
+        padding: 5px 10px;
+    }
+}
