@@ -4,14 +4,23 @@ import SplashScreen from './components/SplashScreen';
 import Question from './components/Question';
 
 function App() {
-    const [count, setCount] = useState(0)
+    const [isSplashScreen, setIsSplashScreen] = useState(true);
+
+    function startQuiz() {
+        setIsSplashScreen(false);
+    }
 
     return (
         <div className='container'>
-            {/* <SplashScreen /> */}
-            <section className="questions">
-                <Question />
-            </section>
+            {
+                isSplashScreen ? 
+                
+                <SplashScreen startQuiz={startQuiz} /> : 
+                
+                <section className="questions">
+                    <Question />
+                </section>
+            }
         </div>
     )
 }
