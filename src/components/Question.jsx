@@ -1,15 +1,15 @@
-export default function Question() {
+export default function Question(props) {
+    const { question, options, answer } = props.prop;
+    const optionsJsx = options.map(option => <li className="option" key={option}>{option}</li>);
+
     return (
         <div className="question-container">
             <h3 className="question">
-                Which best selling toy of 1983 caused hysteria, resulting in riots breaking in stores?
+                {question}
             </h3>
 
             <ul className="options">
-                <li className="option selected">Cabbage Patch Kids</li>
-                <li className="option">Transformers</li>
-                <li className="option">Care Bears</li>
-                <li className="option">Rubik’s Cube</li>
+                {optionsJsx}
             </ul>
         </div>
     )

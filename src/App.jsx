@@ -19,6 +19,24 @@ function App() {
         setIsSplashScreen(false);
     }
 
+    const questionsJsx = questionsArr.map((questionObj, i) => {
+        const index = Math.floor(Math.random() * 4);
+        const answer = questionObj.correct_answer;
+        const options = [...questionObj.incorrect_answers];
+
+        options.splice(index, 0, answer);
+
+        const prop = {
+            question: questionObj.question,
+            options: options,
+            answer: answer
+        }
+
+        return <Question key={i} prop={prop} />
+    });
+
+    // console.log(questionsJsx);
+
     return (
         <div className='container'>
             {
@@ -27,7 +45,7 @@ function App() {
                 <SplashScreen startQuiz={startQuiz} /> : 
                 
                 <section className="questions">
-                    <Question />
+                    {questionsJsx}
                 </section>
             }
         </div>

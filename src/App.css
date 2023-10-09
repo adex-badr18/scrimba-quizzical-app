@@ -147,7 +147,7 @@ ul li.selected {
     }
 
     ul li {
-        width: max-content;
+        width: fit-content;
         padding: 5px 10px;
     }
 }
