@@ -20,6 +20,10 @@ function App() {
         setIsSplashScreen(false);
     }
 
+    function showAnswers() {
+        setCheckAnswers(prevState => !prevState);
+    }
+
     const questionsJsx = questionsArr.map((questionObj, i) => {
         const index = Math.floor(Math.random() * 4);
         const answer = questionObj.correct_answer;
@@ -59,7 +63,7 @@ function App() {
                                     <button>Play again</button>
                                 </div> :
                                 <div className='submit'>
-                                    <button>Check answers</button>
+                                    <button onClick={showAnswers}>Check answers</button>
                                 </div>
                         }
                     </section>
