@@ -6,7 +6,7 @@ import Question from './components/Question';
 function App() {
     const [isSplashScreen, setIsSplashScreen] = useState(true);
     const [questionsArr, setQuestionsArr] = useState([]);
-    const [checkAnswers, setCheckAnswers] = useState(true);
+    const [checkAnswers, setCheckAnswers] = useState(false);
 
     useEffect(() => {
         fetch('https://opentdb.com/api.php?amount=5&type=multiple')
@@ -48,7 +48,7 @@ function App() {
                             <img src="/blobs1.png" className="blobs top" alt="" />
 
                             {questionsJsx}
-                            
+
                             <img src="/blobs2.png" className="blobs bottom" alt="" />
                         </div>
 
