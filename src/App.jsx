@@ -21,7 +21,12 @@ function App() {
     }
 
     function showAnswers() {
-        setCheckAnswers(prevState => !prevState);
+        setCheckAnswers(true);
+    }
+
+    function reset() {
+        setIsSplashScreen(true);
+        setCheckAnswers(false)
     }
 
     const questionsJsx = questionsArr.map((questionObj, i) => {
@@ -60,7 +65,7 @@ function App() {
                             checkAnswers ?
                                 <div className='submit score-container'>
                                     <h4 className='score'>{`You scored ${3}/${5} correct answers`}</h4>
-                                    <button>Play again</button>
+                                    <button onClick={reset}>Play again</button>
                                 </div> :
                                 <div className='submit'>
                                     <button onClick={showAnswers}>Check answers</button>
