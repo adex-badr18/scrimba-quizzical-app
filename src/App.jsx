@@ -6,6 +6,7 @@ import Question from './components/Question';
 function App() {
     const [isSplashScreen, setIsSplashScreen] = useState(true);
     const [questionsArr, setQuestionsArr] = useState([]);
+    const [checkAnswers, setCheckAnswers] = useState(true);
 
     useEffect(() => {
         fetch('https://opentdb.com/api.php?amount=5&type=multiple')
@@ -35,20 +36,33 @@ function App() {
         return <Question key={i} prop={prop} />
     });
 
-    // console.log(questionsJsx);
-
     return (
         <div className='container'>
             {
-                isSplashScreen ? 
-                
-                <SplashScreen startQuiz={startQuiz} /> : 
-                
-                <section className="questions">
-                    <img src="/blobs1.png" className="blobs top" alt="" />
-                    {questionsJsx}
-                    <img src="/blobs2.png" className="blobs bottom" alt="" />
-                </section>
+                isSplashScreen ?
+
+                    <SplashScreen startQuiz={startQuiz} /> :
+
+                    <section className="questions">
+                        <div>
+                            <img src="/blobs1.png" className="blobs top" alt="" />
+
+                            {questionsJsx}
+                            
+                            <img src="/blobs2.png" className="blobs bottom" alt="" />
+                        </div>
+
+                        {
+                            checkAnswers ?
+                                <div className='submit score-container'>
+                                    <h4 className='score'>{`You scored ${3}/${5} correct answers`}</h4>
+                                    <button>Play again</button>
+                                </div> :
+                                <div className='submit'>
+                                    <button>Check answers</button>
+                                </div>
+                        }
+                    </section>
             }
         </div>
     )
