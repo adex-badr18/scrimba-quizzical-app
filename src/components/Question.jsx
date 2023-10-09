@@ -13,6 +13,8 @@ export default function Question(props) {
             <ul className="options">
                 {optionsJsx}
             </ul>
+
+            <hr />
         </div>
     )
 }
