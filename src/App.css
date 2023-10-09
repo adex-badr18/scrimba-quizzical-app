@@ -137,7 +137,7 @@ ul li.selected {
 }
 
 /* MEDIA QUERIES */
-@media (min-width: 468px) {
+@media (min-width: 490px) {
     section {
         padding: 40px 75px 25px;
     }
