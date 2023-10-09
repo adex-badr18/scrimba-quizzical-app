@@ -129,6 +129,36 @@ hr {
     margin: 15px 0;
 }
 
+.submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.score-container {
+    gap: 20px;
+}
+
+.submit h4 {
+    font-size: 13px;
+    line-height: 19px;
+    color: #293264;
+}
+
+.submit button {
+    font-size: 11px;
+    background: #4D5B9E;
+    border-radius: 10px;
+    border: none;
+    font-weight: 500;
+    line-height: 19px;
+    text-align: center;
+    color: #F5F7FB;
+    cursor: pointer;
+    padding: 8px 14px;
+    width: 110px;
+}
+
 /* MEDIA QUERIES */
 @media (min-width: 490px) {
     section {
@@ -142,6 +172,5 @@ hr {
 
     ul li {
         padding: 5px;
-        
     }
 }
