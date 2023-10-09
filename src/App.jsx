@@ -45,7 +45,9 @@ function App() {
                 <SplashScreen startQuiz={startQuiz} /> : 
                 
                 <section className="questions">
+                    <img src="/blobs1.png" className="blobs top" alt="" />
                     {questionsJsx}
+                    <img src="/blobs2.png" className="blobs bottom" alt="" />
                 </section>
             }
         </div>
