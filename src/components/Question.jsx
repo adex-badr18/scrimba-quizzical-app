@@ -1,8 +1,25 @@
 import { decode } from "html-entities";
 
-export default function Question(props) {
-    const { question, options, answer } = props.prop;
-    const optionsJsx = options.map(option => <li className="option" key={option}>{decode(option)}</li>);
+export default function Question({ props, updateAnswer, showResult }) {
+    const { 
+        questionId, question, options, correctAnswer, selectedOption
+     } = props;
+
+    const optionsJsx = options.map((option, index) => (
+        <li 
+            className={
+                `option ${!showResult && option === selectedOption ? 'selected' : ''}
+                ${showResult && option === correctAnswer ? 'correct' : ''}
+                ${showResult && option !== correctAnswer ? 'incorrect' : ''}
+                `
+            }
+            disabled={showResult}
+            key={index}
+            onClick={() => updateAnswer(question, option)}
+        >
+            {decode(option)}
+        </li>
+    ));
 
     return (
         <div className="question-container">
