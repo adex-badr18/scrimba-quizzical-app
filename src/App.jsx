@@ -9,28 +9,34 @@ function App() {
     const [questionsArr, setQuestionsArr] = useState([]);
     const [showResult, setshowResult] = useState(false);
     const [scoreCount, setScoreCount] = useState(0);
+    const [resetQuiz, setResetQuiz] = useState(false);
 
     useEffect(() => {
-        fetch('https://opentdb.com/api.php?amount=5&type=multiple')
-            .then(res => res.json())
-            .then(data => {
-                let resultArr = [];
-                data.response_code === 0 && (resultArr = data.results.map(result => {
-                    const answerIndex = Math.floor(Math.random() * 4);
-                    result.incorrect_answers.splice(answerIndex, 0, result.correct_answer);
+        setResetQuiz(false);
+        function setQuestions() {
+            fetch('https://opentdb.com/api.php?amount=5&type=multiple')
+                .then(res => res.json())
+                .then(data => {
+                    let resultArr = [];
+                    data.response_code === 0 && (resultArr = data.results.map(result => {
+                        const answerIndex = Math.floor(Math.random() * 4);
+                        result.incorrect_answers.splice(answerIndex, 0, result.correct_answer);
 
-                    return {
-                        id: nanoid(),
-                        question: result.question,
-                        options: result.incorrect_answers,
-                        answer: result.correct_answer,
-                        selectedOption: ""
-                    }
-                }));
+                        return {
+                            id: nanoid(),
+                            question: result.question,
+                            options: result.incorrect_answers,
+                            answer: result.correct_answer,
+                            selectedOption: ""
+                        }
+                    }));
 
-                setQuestionsArr(resultArr);
-            })
-    }, []);
+                    setQuestionsArr(resultArr);
+                })
+        }
+
+        return setQuestions();
+    }, [resetQuiz]);
 
     function startQuiz() {
         setIsSplashScreen(false);
@@ -56,7 +62,8 @@ function App() {
 
     function reset() {
         setIsSplashScreen(true);
-        setshowResult(false)
+        setshowResult(false);
+        setResetQuiz(prevState => !prevState);
     }
 
     const questionsJsx = questionsArr.map((questionObj, index) => {
