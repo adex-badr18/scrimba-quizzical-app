@@ -11,7 +11,8 @@ export default function Question({ props, updateAnswer, showResult }) {
             className={
                 `option ${!showResult && option === selectedOption ? 'selected' : ''}
                 ${showResult && option === correctAnswer ? 'correct' : ''}
-                ${(showResult && option !== correctAnswer && option === selectedOption) ? 'incorrect' : ''}
+                ${showResult && option !== correctAnswer && option === selectedOption ? 'incorrect' : ''}
+                ${showResult && option !== correctAnswer && option !== selectedOption ? 'incorrects': ''}
                 `
             }
             disabled={showResult}

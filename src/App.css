@@ -135,6 +135,10 @@ ul li.correct {
     border: none;
 }
 
+ul li.incorrects {
+    opacity: 0.5;
+}
+
 hr {
     border: 1px solid #DBDEF0;
     margin: 15px 0;
