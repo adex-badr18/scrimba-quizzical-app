@@ -117,10 +117,21 @@ ul li {
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 ul li.selected {
     background: #D6DBF5;
+    border: none;
+}
+
+ul li.incorrect {
+    background-color: #F8BCBC;
+    border: none;
+}
+
+ul li.correct {
+    background-color: #94D7A2;
     border: none;
 }
 

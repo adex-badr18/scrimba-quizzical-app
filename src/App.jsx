@@ -61,7 +61,6 @@ function App() {
 
     const questionsJsx = questionsArr.map((questionObj, index) => {
         const props = {
-            questionId: questionObj.id,
             question: questionObj.question,
             options: questionObj.options,
             correctAnswer: questionObj.answer,

@@ -1,16 +1,17 @@
 import { decode } from "html-entities";
 
 export default function Question({ props, updateAnswer, showResult }) {
-    const { 
-        questionId, question, options, correctAnswer, selectedOption
-     } = props;
+    let {
+        question, options, correctAnswer, selectedOption
+    } = props;
 
-    const optionsJsx = options.map((option, index) => (
-        <li 
+    const optionsJsx = options.map((option, index) => {
+        
+        return (<li
             className={
                 `option ${!showResult && option === selectedOption ? 'selected' : ''}
                 ${showResult && option === correctAnswer ? 'correct' : ''}
-                ${showResult && option !== correctAnswer ? 'incorrect' : ''}
+                ${(showResult && option !== correctAnswer && option === selectedOption) ? 'incorrect' : ''}
                 `
             }
             disabled={showResult}
@@ -18,8 +19,8 @@ export default function Question({ props, updateAnswer, showResult }) {
             onClick={() => updateAnswer(question, option)}
         >
             {decode(option)}
-        </li>
-    ));
+        </li>)
+    });
 
     return (
         <div className="question-container">
