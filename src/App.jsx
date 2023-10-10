@@ -5,6 +5,9 @@ import Question from './components/Question';
 import { nanoid } from 'nanoid';
 
 function App() {
+    const [category, setCategory] = useState(19);
+    const [difficulty, setDifficulty] = useState('easy');
+    
     const [isSplashScreen, setIsSplashScreen] = useState(true);
     const [questionsArr, setQuestionsArr] = useState([]);
     const [showResult, setshowResult] = useState(false);
@@ -14,7 +17,9 @@ function App() {
     useEffect(() => {
         setResetQuiz(false);
         function setQuestions() {
-            fetch('https://opentdb.com/api.php?amount=5&type=multiple')
+            const categoryQuery = category ? `&category=${category}` : '';
+            const difficultyQuery = difficulty ? `&difficulty=${difficulty}` : '';
+            fetch(`https://opentdb.com/api.php?amount=5&type=multiple${categoryQuery}${difficultyQuery}`)
                 .then(res => res.json())
                 .then(data => {
                     let resultArr = [];
@@ -110,3 +115,5 @@ function App() {
 }
 
 export default App
+
+// Categories: https://opentdb.com/api_category.php
