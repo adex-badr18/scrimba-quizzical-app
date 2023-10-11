@@ -7,12 +7,19 @@ import { nanoid } from 'nanoid';
 function App() {
     const [category, setCategory] = useState(19);
     const [difficulty, setDifficulty] = useState('easy');
+    const [categories, setCategories] = useState([]);
     
     const [isSplashScreen, setIsSplashScreen] = useState(true);
     const [questionsArr, setQuestionsArr] = useState([]);
     const [showResult, setshowResult] = useState(false);
     const [scoreCount, setScoreCount] = useState(0);
     const [resetQuiz, setResetQuiz] = useState(false);
+
+    useEffect(() => {
+        fetch('https://opentdb.com/api_category.php')
+            .then(res => res.json())
+            .then(data => setCategories(data.trivia_categories))
+    }, []);
 
     useEffect(() => {
         setResetQuiz(false);
@@ -87,7 +94,7 @@ function App() {
             {
                 isSplashScreen ?
 
-                    <SplashScreen startQuiz={startQuiz} /> :
+                    <SplashScreen startQuiz={startQuiz} categories={categories} /> :
 
                     <section className="questions">
                         <div>
