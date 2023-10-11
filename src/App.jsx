@@ -3,6 +3,8 @@ import './App.css';
 import SplashScreen from './components/SplashScreen';
 import Question from './components/Question';
 import { nanoid } from 'nanoid';
+import {blobs1} from '/blobs1.png';
+import {blobs2} from '/blobs2.png';
 
 function App() {
     const [isSplashScreen, setIsSplashScreen] = useState(true);
@@ -99,7 +101,7 @@ function App() {
 
                     <section className="questions">
                         <div>
-                            <img src="/blobs1.png" className="blobs top" alt="" />
+                            <img src={blobs1} className="blobs top" alt="" />
 
                             {
                                 <div className="header">
@@ -119,7 +121,7 @@ function App() {
 
                             {questionsJsx}
 
-                            <img src="/blobs2.png" className="blobs bottom" alt="" />
+                            <img src={blobs2} className="blobs bottom" alt="" />
                         </div>
 
                         {

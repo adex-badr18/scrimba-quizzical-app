@@ -1,3 +1,6 @@
+import {blobs1} from '/blobs1.png';
+import {blobs2} from '/blobs2.png';
+
 export default function SplashScreen(props) {
     const { categories, setQueryParams, queryParams, setQuestions } = props;
     const optionElements = categories.map(category => (
@@ -13,7 +16,7 @@ export default function SplashScreen(props) {
 
     return (
         <section className="splash">
-            <img src="/blobs1.png" className="blobs top" alt="" />
+            <img src={blobs1} className="blobs top" alt="" />
             <h1 className="splash--title">Quizzical</h1>
             <p className="splash--description">
                 Your Ultimate Knowledge Challenge! 🧠 Test your wits, conquer quizzes, and become the champion of trivia!
@@ -35,7 +38,7 @@ export default function SplashScreen(props) {
                 <button className="start-btn" onClick={setQuestions}>Start quiz</button>
             </div>
 
-            <img src="/blobs2.png" className="blobs bottom" alt="" />
+            <img src={blobs2} className="blobs bottom" alt="" />
         </section>
     )
 }
