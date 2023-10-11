@@ -5,6 +5,8 @@ import Question from './components/Question';
 import { nanoid } from 'nanoid';
 
 function App() {
+    const [isSplashScreen, setIsSplashScreen] = useState(true);
+
     const [quizQueryString, setQuizQueryString] = useState('');
     const [queryParams, setQueryParams] = useState({ category: '', difficulty: '' });
     const [categories, setCategories] = useState([]);
@@ -40,14 +42,9 @@ function App() {
                 }));
 
                 setQuestionsArr(resultArr);
+                setIsSplashScreen(false);
             })
-    }, [quizQueryString])
-
-    // function startQuiz() {
-    //     setQueryString();
-    //     setQuestions();
-    //     setIsSplashScreen(false);
-    // }
+    }, [quizQueryString]);
 
     function updateAnswer(targetQuestion, answer) {
         setQuestionsArr(prevQuestionArr => {
