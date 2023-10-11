@@ -141,6 +141,10 @@ ul li {
     cursor: pointer;
 }
 
+ul li:hover {
+    background: #D6DBF5;
+}
+
 ul li.selected {
     background: #D6DBF5;
     border: none;
