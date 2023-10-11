@@ -1,4 +1,5 @@
-export default function SplashScreen({ categories, setQueryParams, queryParams, setQuestions }) {
+export default function SplashScreen(props) {
+    const { categories, setQueryParams, queryParams, setQuestions } = props;
     const optionElements = categories.map(category => (
         <option key={category.id} value={category.id}>{category.name}</option>
     ));
