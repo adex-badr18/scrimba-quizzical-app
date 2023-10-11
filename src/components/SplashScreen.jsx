@@ -1,4 +1,4 @@
-export default function SplashScreen({ startQuiz, categories }) {
+export default function SplashScreen({ startQuiz, categories, setQueryParams }) {
     const optionElements = categories.map(category => (
         <option key={category.id} value={category.id}>{category.name}</option>
     ));
@@ -11,13 +11,13 @@ export default function SplashScreen({ startQuiz, categories }) {
                 Your Ultimate Knowledge Challenge! 🧠 Test your wits, conquer quizzes, and become the champion of trivia!
             </p>
 
-            <form action="" className="settings-form">
-                <select name="category" className="category">
+            <div className="settings-form">
+                <select name="category" value='' onChange={e => setQueryParams(prev => ({...prev, category: e.target.value}))}>
                     <option value="">Any Category</option>
                     {optionElements}
                 </select>
 
-                <select name="difficulty">
+                <select name="difficulty" value='' onChange={e => setQueryParams(prev => ({...prev, difficulty: e.target.value}))}>
                     <option value="">Any Difficulty</option>
                     <option value="easy">Easy</option>
                     <option value="medium">Medium</option>
@@ -25,7 +25,7 @@ export default function SplashScreen({ startQuiz, categories }) {
                 </select>
 
                 <button className="start-btn" onClick={startQuiz}>Start quiz</button>
-            </form>
+            </div>
 
             <img src="/blobs2.png" className="blobs bottom" alt="" />
         </section>
