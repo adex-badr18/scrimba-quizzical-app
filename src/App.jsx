@@ -64,11 +64,11 @@ function App() {
         setshowResult(true);
     }
 
-    // function reset() {
-    //     setIsSplashScreen(true);
-    //     setshowResult(false);
-    //     setResetQuiz(prevState => !prevState);
-    // }
+    function resetQuiz() {
+        setIsSplashScreen(true);
+        setshowResult(false);
+        setScoreCount(0);
+    }
 
     function setQueryString() {
         setQuizQueryString(() => {
@@ -122,7 +122,7 @@ function App() {
                             showResult ?
                                 <div className='submit score-container'>
                                     <h4 className='score'>{`You scored ${scoreCount}/${questionsArr.length} correct answers`}</h4>
-                                    <button onClick={reset}>Start again</button>
+                                    <button onClick={resetQuiz}>Start again</button>
                                 </div> :
                                 <div className='submit'>
                                     <button onClick={displayResult}>Show result</button>
