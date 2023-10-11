@@ -7,7 +7,6 @@ import { nanoid } from 'nanoid';
 function App() {
     const [isSplashScreen, setIsSplashScreen] = useState(true);
 
-    const [quizQueryString, setQuizQueryString] = useState('');
     const [queryParams, setQueryParams] = useState({ category: '', difficulty: '' });
     const [categories, setCategories] = useState([]);
 
@@ -21,19 +20,10 @@ function App() {
             .then(data => setCategories(data.trivia_categories))
     }, []);
 
-    // useEffect(() => {
-    //     console.log('App', queryParams);
-    // }, [queryParams])
-
     const setQuestions = useCallback(() => {
-        console.log(queryParams);
-        const categoryString = queryParams.category !== '' ? `&category=${queryParams.category}` : '';
-        const difficultyString = queryParams.difficulty !== '' ? `&difficulty=${queryParams.difficulty}` : '';
-        
-        fetch(`https://opentdb.com/api.php?amount=5&type=multiple${categoryString}${difficultyString}`)
+        fetch(`https://opentdb.com/api.php?amount=5&type=multiple${setQueryString()}`)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 let resultArr = [];
                 data.response_code === 0 && (resultArr = data.results.map(result => {
                     const answerIndex = Math.floor(Math.random() * 4);
@@ -50,7 +40,6 @@ function App() {
 
                 setQuestionsArr(resultArr);
                 setIsSplashScreen(false);
-                console.log(questionsArr);
             })
     }, [queryParams]);
 
@@ -73,20 +62,10 @@ function App() {
     }
 
     function setQueryString() {
-        setQuizQueryString(() => {
-            const categoryString = `&category=${queryParams.category}`;
-            const difficultyString = `&difficulty=${queryParams.difficulty}`;
+        const categoryString = queryParams.category !== '' ? `&category=${queryParams.category}` : '';
+        const difficultyString = queryParams.difficulty !== '' ? `&difficulty=${queryParams.difficulty}` : '';
 
-            if (queryParams.category && queryParams.difficulty) {
-                return categoryString + difficultyString;
-            } else if (queryParams.category && !queryParams.difficulty) {
-                return categoryString;
-            } else if (!queryParams.category && queryParams.difficulty) {
-                return difficultyString
-            } else {
-                return '';
-            }
-        });
+        return categoryString + difficultyString;
     }
 
     function resetQuiz() {
@@ -112,11 +91,10 @@ function App() {
                 isSplashScreen ?
 
                     <SplashScreen
-                        categories={categories} 
+                        categories={categories}
                         setQueryParams={setQueryParams}
                         queryParams={queryParams}
                         setQuestions={setQuestions}
-                        setQuizQueryString={setQuizQueryString}
                     /> :
 
                     <section className="questions">
@@ -145,5 +123,3 @@ function App() {
 }
 
 export default App
-
-// Categories: https://opentdb.com/api_category.php
