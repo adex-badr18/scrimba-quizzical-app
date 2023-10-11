@@ -55,6 +55,25 @@ img.blobs {
     margin-bottom: 30px;
 }
 
+.settings-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-field {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+select {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #4D5B9E;
+    border-radius: 10px;
+    color: #293264;
+}
+
 .start-btn {
     width: 193px;
     height: 52px;
@@ -68,6 +87,7 @@ img.blobs {
     text-align: center;
     color: #F5F7FB;
     cursor: pointer;
+    align-self: center;
 }
 
 button:focus {
