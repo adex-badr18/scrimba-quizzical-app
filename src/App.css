@@ -140,8 +140,9 @@ h3.question {
 
 ul.options {
     list-style: none;
-    display: grid;
-    grid-template: repeat(2, auto) / repeat(2, 1fr);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
     gap: 13px;
 }
 
@@ -155,7 +156,7 @@ ul li {
     line-height: 12px;
     text-align: center;
     color: #293264;
-    padding: 4px;
+    padding: 6px 12px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -229,14 +230,5 @@ hr {
 @media (min-width: 490px) {
     section {
         padding: 40px 75px 25px;
-    }
-
-    ul.options {
-        grid-template: unset;
-        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-    }
-
-    ul li {
-        padding: 5px;
     }
 }
