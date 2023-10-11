@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import './App.css';
 import SplashScreen from './components/SplashScreen';
 import Question from './components/Question';
@@ -9,11 +9,9 @@ function App() {
     const [queryParams, setQueryParams] = useState({ category: '', difficulty: '' });
     const [categories, setCategories] = useState([]);
 
-    const [isSplashScreen, setIsSplashScreen] = useState(true);
     const [questionsArr, setQuestionsArr] = useState([]);
     const [showResult, setshowResult] = useState(false);
     const [scoreCount, setScoreCount] = useState(0);
-    const [resetQuiz, setResetQuiz] = useState(false);
 
     useEffect(() => {
         fetch('https://opentdb.com/api_category.php')
@@ -21,12 +19,8 @@ function App() {
             .then(data => setCategories(data.trivia_categories))
     }, []);
 
-    useEffect(() => {
-        setResetQuiz(false);
-        setQuestions();
-    }, []);
-
-    function setQuestions() {
+    const setQuestions = useCallback(() => {
+        setQueryString();
         fetch(`https://opentdb.com/api.php?amount=5&type=multiple${quizQueryString}`)
             .then(res => res.json())
             .then(data => {
@@ -47,13 +41,13 @@ function App() {
 
                 setQuestionsArr(resultArr);
             })
-    }
+    }, [quizQueryString])
 
-    function startQuiz() {
-        setQueryString();
-        setQuestions();
-        setIsSplashScreen(false);
-    }
+    // function startQuiz() {
+    //     setQueryString();
+    //     setQuestions();
+    //     setIsSplashScreen(false);
+    // }
 
     function updateAnswer(targetQuestion, answer) {
         setQuestionsArr(prevQuestionArr => {
@@ -73,11 +67,11 @@ function App() {
         setshowResult(true);
     }
 
-    function reset() {
-        setIsSplashScreen(true);
-        setshowResult(false);
-        setResetQuiz(prevState => !prevState);
-    }
+    // function reset() {
+    //     setIsSplashScreen(true);
+    //     setshowResult(false);
+    //     setResetQuiz(prevState => !prevState);
+    // }
 
     function setQueryString() {
         setQuizQueryString(() => {
@@ -113,7 +107,9 @@ function App() {
                 isSplashScreen ?
 
                     <SplashScreen
-                        startQuiz={startQuiz} categories={categories} setQueryParams={setQueryParams}
+                        categories={categories} 
+                        setQueryParams={setQueryParams}
+                        setQuestions={setQuestions}
                     /> :
 
                     <section className="questions">

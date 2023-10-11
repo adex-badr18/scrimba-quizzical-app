@@ -1,4 +1,4 @@
-export default function SplashScreen({ startQuiz, categories, setQueryParams }) {
+export default function SplashScreen({ categories, setQueryParams, setQuestions }) {
     const optionElements = categories.map(category => (
         <option key={category.id} value={category.id}>{category.name}</option>
     ));
@@ -24,7 +24,7 @@ export default function SplashScreen({ startQuiz, categories, setQueryParams }) 
                     <option value="hard">Hard</option>
                 </select>
 
-                <button className="start-btn" onClick={startQuiz}>Start quiz</button>
+                <button className="start-btn" onClick={setQuestions}>Start quiz</button>
             </div>
 
             <img src="/blobs2.png" className="blobs bottom" alt="" />
