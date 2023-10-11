@@ -160,6 +160,10 @@ ul li.incorrects {
     opacity: 0.5;
 }
 
+ul li.disabled {
+    pointer-events: none;
+}
+
 hr {
     border: 1px solid #DBDEF0;
     margin: 15px 0;

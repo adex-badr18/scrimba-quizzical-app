@@ -13,6 +13,7 @@ export default function Question({ props, updateAnswer, showResult }) {
                 ${showResult && option === correctAnswer ? 'correct' : ''}
                 ${showResult && option !== correctAnswer && option === selectedOption ? 'incorrect' : ''}
                 ${showResult && option !== correctAnswer && option !== selectedOption ? 'incorrects': ''}
+                ${showResult ? 'disabled' : ''}
                 `
             }
             disabled={showResult}
