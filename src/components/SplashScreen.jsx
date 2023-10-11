@@ -1,8 +1,15 @@
 export default function SplashScreen(props) {
     const { categories, setQueryParams, queryParams, setQuestions } = props;
     const optionElements = categories.map(category => (
-        <option key={category.id} value={category.id}>{category.name}</option>
+        <option
+            key={category.id}
+            value={category.id}
+        >
+            {category.name}
+        </option>
     ));
+
+    // console.log(optionElements);
 
     return (
         <section className="splash">
@@ -13,12 +20,12 @@ export default function SplashScreen(props) {
             </p>
 
             <div className="settings-form">
-                <select name="category" value={queryParams.category} onChange={e => setQueryParams(prev => ({...prev, category: e.target.value}))}>
+                <select name="category" value={queryParams.categoryId} onChange={e => setQueryParams(prev => ({ ...prev, categoryId: e.target.value, categoryName: e.target.options[e.target.selectedIndex].text }))}>
                     <option value="">Any Category</option>
                     {optionElements}
                 </select>
 
-                <select name="difficulty" value={queryParams.difficulty} onChange={e => setQueryParams(prev => ({...prev, difficulty: e.target.value}))}>
+                <select name="difficulty" value={queryParams.difficulty} onChange={e => setQueryParams(prev => ({ ...prev, difficulty: e.target.value }))}>
                     <option value="">Any Difficulty</option>
                     <option value="easy">Easy</option>
                     <option value="medium">Medium</option>

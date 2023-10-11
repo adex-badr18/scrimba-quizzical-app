@@ -7,7 +7,7 @@ import { nanoid } from 'nanoid';
 function App() {
     const [isSplashScreen, setIsSplashScreen] = useState(true);
 
-    const [queryParams, setQueryParams] = useState({ category: '', difficulty: '' });
+    const [queryParams, setQueryParams] = useState({ categoryId: '', categoryName: '', difficulty: '' });
     const [categories, setCategories] = useState([]);
 
     const [questionsArr, setQuestionsArr] = useState([]);
@@ -62,7 +62,7 @@ function App() {
     }
 
     function setQueryString() {
-        const categoryString = queryParams.category !== '' ? `&category=${queryParams.category}` : '';
+        const categoryString = queryParams.categoryId !== '' ? `&category=${queryParams.categoryId}` : '';
         const difficultyString = queryParams.difficulty !== '' ? `&difficulty=${queryParams.difficulty}` : '';
 
         return categoryString + difficultyString;
@@ -105,11 +105,15 @@ function App() {
                                 <div className="header">
                                     <h1>Quizzical</h1>
 
-                                    <p>
-                                        Category: {queryParams.category ? queryParams.category : 'Random'}
-                                    </p>
-
-                                    <p>Difficulty: {queryParams.difficulty ? queryParams.difficulty : 'Random'}</p>
+                                    <div className="quiz-info">
+                                        <p><span>Category: </span>
+                                            {
+                                                queryParams.categoryName ? queryParams.categoryName : 'Random'
+                                            }
+                                        </p>
+                                        <p><span>Difficulty: </span>{queryParams.difficulty ? queryParams.difficulty : 'Random'}</p>
+                                    </div>
+                                    <hr />
                                 </div>
                             }
 

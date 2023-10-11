@@ -100,6 +100,27 @@ button:active {
 }
 
 /* Question component */
+.header {
+    color: #293264;
+}
+
+.quiz-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.header p {
+    font-size: 12px;
+    line-height: 1.3;
+    text-transform: capitalize;
+}
+
+.header span {
+    font-weight: 700;
+}
+
 .questions {
     z-index: 1;
 }
