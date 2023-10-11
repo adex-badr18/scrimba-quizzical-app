@@ -1,7 +1,7 @@
 import { decode } from "html-entities";
 
 export default function Question({ props, updateAnswer, showResult }) {
-    let {
+    const {
         question, options, correctAnswer, selectedOption
     } = props;
 

@@ -101,6 +101,18 @@ function App() {
                         <div>
                             <img src="/blobs1.png" className="blobs top" alt="" />
 
+                            {
+                                <div className="header">
+                                    <h1>Quizzical</h1>
+
+                                    <p>
+                                        Category: {queryParams.category ? queryParams.category : 'Random'}
+                                    </p>
+
+                                    <p>Difficulty: {queryParams.difficulty ? queryParams.difficulty : 'Random'}</p>
+                                </div>
+                            }
+
                             {questionsJsx}
 
                             <img src="/blobs2.png" className="blobs bottom" alt="" />
