@@ -21,11 +21,19 @@ function App() {
             .then(data => setCategories(data.trivia_categories))
     }, []);
 
+    // useEffect(() => {
+    //     console.log('App', queryParams);
+    // }, [queryParams])
+
     const setQuestions = useCallback(() => {
-        setQueryString();
-        fetch(`https://opentdb.com/api.php?amount=5&type=multiple${quizQueryString}`)
+        console.log(queryParams);
+        const categoryString = queryParams.category !== '' ? `&category=${queryParams.category}` : '';
+        const difficultyString = queryParams.difficulty !== '' ? `&difficulty=${queryParams.difficulty}` : '';
+        
+        fetch(`https://opentdb.com/api.php?amount=5&type=multiple${categoryString}${difficultyString}`)
             .then(res => res.json())
             .then(data => {
+                console.log(data);
                 let resultArr = [];
                 data.response_code === 0 && (resultArr = data.results.map(result => {
                     const answerIndex = Math.floor(Math.random() * 4);
@@ -42,8 +50,9 @@ function App() {
 
                 setQuestionsArr(resultArr);
                 setIsSplashScreen(false);
+                console.log(questionsArr);
             })
-    }, [quizQueryString]);
+    }, [queryParams]);
 
     function updateAnswer(targetQuestion, answer) {
         setQuestionsArr(prevQuestionArr => {
@@ -63,12 +72,6 @@ function App() {
         setshowResult(true);
     }
 
-    function resetQuiz() {
-        setIsSplashScreen(true);
-        setshowResult(false);
-        setScoreCount(0);
-    }
-
     function setQueryString() {
         setQuizQueryString(() => {
             const categoryString = `&category=${queryParams.category}`;
@@ -84,7 +87,12 @@ function App() {
                 return '';
             }
         });
-        console.log(queryParams);
+    }
+
+    function resetQuiz() {
+        setIsSplashScreen(true);
+        setshowResult(false);
+        setScoreCount(0);
     }
 
     const questionsJsx = questionsArr.map((questionObj, index) => {
@@ -108,6 +116,7 @@ function App() {
                         setQueryParams={setQueryParams}
                         queryParams={queryParams}
                         setQuestions={setQuestions}
+                        setQuizQueryString={setQuizQueryString}
                     /> :
 
                     <section className="questions">
