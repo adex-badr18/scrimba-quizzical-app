@@ -5,10 +5,10 @@ import Question from './components/Question';
 import { nanoid } from 'nanoid';
 
 function App() {
-    const [category, setCategory] = useState(19);
-    const [difficulty, setDifficulty] = useState('easy');
+    const [quizQueryString, setQuizQueryString] = useState('');
+    const [queryParams, setQueryParams] = useState({ category: '', difficulty: '' });
     const [categories, setCategories] = useState([]);
-    
+
     const [isSplashScreen, setIsSplashScreen] = useState(true);
     const [questionsArr, setQuestionsArr] = useState([]);
     const [showResult, setshowResult] = useState(false);
@@ -23,34 +23,35 @@ function App() {
 
     useEffect(() => {
         setResetQuiz(false);
-        function setQuestions() {
-            const categoryQuery = category ? `&category=${category}` : '';
-            const difficultyQuery = difficulty ? `&difficulty=${difficulty}` : '';
-            fetch(`https://opentdb.com/api.php?amount=5&type=multiple${categoryQuery}${difficultyQuery}`)
-                .then(res => res.json())
-                .then(data => {
-                    let resultArr = [];
-                    data.response_code === 0 && (resultArr = data.results.map(result => {
-                        const answerIndex = Math.floor(Math.random() * 4);
-                        result.incorrect_answers.splice(answerIndex, 0, result.correct_answer);
+        setQuestions();
+    }, []);
 
-                        return {
-                            id: nanoid(),
-                            question: result.question,
-                            options: result.incorrect_answers,
-                            answer: result.correct_answer,
-                            selectedOption: ""
-                        }
-                    }));
+    function setQuestions() {
+        fetch(`https://opentdb.com/api.php?amount=5&type=multiple${quizQueryString}`)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                let resultArr = [];
+                data.response_code === 0 && (resultArr = data.results.map(result => {
+                    const answerIndex = Math.floor(Math.random() * 4);
+                    result.incorrect_answers.splice(answerIndex, 0, result.correct_answer);
 
-                    setQuestionsArr(resultArr);
-                })
-        }
+                    return {
+                        id: nanoid(),
+                        question: result.question,
+                        options: result.incorrect_answers,
+                        answer: result.correct_answer,
+                        selectedOption: ""
+                    }
+                }));
 
-        return setQuestions();
-    }, [resetQuiz]);
+                setQuestionsArr(resultArr);
+            })
+    }
 
     function startQuiz() {
+        setQueryString();
+        setQuestions();
         setIsSplashScreen(false);
     }
 
@@ -78,6 +79,23 @@ function App() {
         setResetQuiz(prevState => !prevState);
     }
 
+    function setQueryString() {
+        setQuizQueryString(() => {
+            const categoryString = `&category=${queryParams.category}`;
+            const difficultyString = `&difficulty=${queryParams.difficulty}`;
+
+            if (queryParams.category && queryParams.difficulty) {
+                return categoryString + difficultyString;
+            } else if (queryParams.category && !queryParams.difficulty) {
+                return categoryString;
+            } else if (!queryParams.category && queryParams.difficulty) {
+                return difficultyString
+            } else {
+                return '';
+            }
+        });
+    }
+
     const questionsJsx = questionsArr.map((questionObj, index) => {
         const props = {
             question: questionObj.question,
@@ -94,7 +112,9 @@ function App() {
             {
                 isSplashScreen ?
 
-                    <SplashScreen startQuiz={startQuiz} categories={categories} /> :
+                    <SplashScreen
+                        startQuiz={startQuiz} categories={categories} setQueryParams={setQueryParams}
+                    /> :
 
                     <section className="questions">
                         <div>
