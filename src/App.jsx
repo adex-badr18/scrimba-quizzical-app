@@ -26,7 +26,6 @@ function App() {
         fetch(`https://opentdb.com/api.php?amount=5&type=multiple${quizQueryString}`)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 let resultArr = [];
                 data.response_code === 0 && (resultArr = data.results.map(result => {
                     const answerIndex = Math.floor(Math.random() * 4);
@@ -85,6 +84,7 @@ function App() {
                 return '';
             }
         });
+        console.log(queryParams);
     }
 
     const questionsJsx = questionsArr.map((questionObj, index) => {
@@ -106,6 +106,7 @@ function App() {
                     <SplashScreen
                         categories={categories} 
                         setQueryParams={setQueryParams}
+                        queryParams={queryParams}
                         setQuestions={setQuestions}
                     /> :
 
